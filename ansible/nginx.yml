@@ -1,0 +1,24 @@
+
+- hosts: masters
+  become: yes
+  
+  tasks:
+   - name: install APT Transport HTTPS
+     apt:
+      name: apt-transport-https
+      state: present
+
+   - name: install Nginx
+     apt:
+       name: nginx
+       state: present
+       update_cache: true
+
+   - name: Copy simple app file to nginx server default
+     copy:
+       src: index.html
+       dest: /var/www/html/index.html
+   
+
+  
+
